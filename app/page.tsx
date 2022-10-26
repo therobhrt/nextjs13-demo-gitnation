@@ -125,8 +125,9 @@ export const homePageContentConfig = [
 async function getData() {
   try {
     const res = await fetch(
-      // "http://localhost:3000/api/getData"
-      "https://nextjs-test-data.vercel.app/api/getData"
+      process.env.NODE_ENV === "production"
+        ? "https://nextjs-test-data.vercel.app/api/getData"
+        : "http://localhost:3000/api/getData"
     );
 
     // The return value is *not* serialized
