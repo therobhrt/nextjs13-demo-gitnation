@@ -63,7 +63,7 @@ export function VideoItem({
     content.slug === "inside-fiber-the-in-depth-overview-you-wanted-a-tldr-for";
 
   // Disable data cache for demo on a single content
-  const noStore = content.slug === "solidjs-reactivity-unchained";
+  // const noStore = content.slug === "solidjs-reactivity-unchained";
 
   // Enable revalidate for demo on a single content
   const revalidate =
@@ -100,7 +100,7 @@ export function VideoItem({
         <div className="article-box__main">
           <div className="article-box__title">
             {noPrefetch && "NO PREFETCH "}
-            {noStore && "NO STORE "}
+            {/*{noStore && "NO STORE "}*/}
             {revalidate && "REVALIDATE 60sec "}
             {content.title}
           </div>

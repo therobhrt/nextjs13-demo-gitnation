@@ -1,19 +1,40 @@
 import ContentPage from "../../../components/ContentPage";
 
-export const runtime = "experimental-edge";
-export const revalidate = 60;
+// export const runtime = "experimental-edge";
+
+export async function generateStaticParams() {
+  const posts = await fetch(
+    process.env.NODE_ENV === "production"
+      ? "https://nextjs-test-data.vercel.app/api/getData?generateStaticParams"
+      : "http://localhost:3000/api/getData?generateStaticParams"
+  );
+
+  const { contents } = await posts.json();
+
+  let flatContents = [];
+
+  contents.forEach((contentCollection) =>
+    contentCollection.forEach((content) => flatContents.push(content))
+  );
+
+  const returnList = flatContents.map((content) => ({
+    slug: content.slug,
+  }));
+
+  return returnList;
+}
 
 async function getData(slug) {
   try {
-    const noStore = slug === "solidjs-reactivity-unchained";
+    // const noStore = slug === "solidjs-reactivity-unchained";
     const revalidate = slug === "optimizing-html5-games-10-years-of-learnings";
     const res = await fetch(
       process.env.NODE_ENV === "production"
-        ? "https://nextjs-test-data.vercel.app/api/getData"
-        : "http://localhost:3000/api/getData",
+        ? `https://nextjs-test-data.vercel.app/api/getData?slug=${slug}`
+        : `http://localhost:3000/api/getData?slug=${slug}`,
       {
-        cache: noStore ? "no-store" : undefined,
-        // next: { revalidate: revalidate ? 60 : undefined },
+        // cache: noStore ? "no-store" : undefined,
+        next: { revalidate: revalidate ? 60 : undefined },
       }
     );
 
