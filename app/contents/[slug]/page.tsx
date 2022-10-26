@@ -1,6 +1,7 @@
 import ContentPage from "../../../components/ContentPage";
 
 export const runtime = "experimental-edge";
+export const revalidate = 60;
 
 async function getData(slug) {
   try {
@@ -12,7 +13,7 @@ async function getData(slug) {
         : "http://localhost:3000/api/getData",
       {
         cache: noStore ? "no-store" : undefined,
-        next: { revalidate: revalidate ? 60 : undefined },
+        // next: { revalidate: revalidate ? 60 : undefined },
       }
     );
 
