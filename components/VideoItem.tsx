@@ -58,10 +58,21 @@ export function VideoItem({
     articleBoxClasses += " article-box--name-col3  ";
   }
 
+  // Disable prefetch for demo on a single content
+  const noPrefetch =
+    content.slug === "inside-fiber-the-in-depth-overview-you-wanted-a-tldr-for";
+
+  // Disable data cache for demo on a single content
+  const noStore = content.slug === "solidjs-reactivity-unchained";
+
+  // Enable revalidate for demo on a single content
+  const revalidate =
+    content.slug === "optimizing-html5-games-10-years-of-learnings";
+
   const elements = (
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <article className={articleBoxClasses}>
-      <AccessLink content={content} />
+      <AccessLink content={content} prefetch={!noPrefetch} />
       <div
         className={`article-box__top${
           !content.event?.brand?.icon ? " article-box__height" : ""
@@ -87,7 +98,12 @@ export function VideoItem({
       </div>
       <div className="article-box__wrap">
         <div className="article-box__main">
-          <div className="article-box__title">{content.title}</div>
+          <div className="article-box__title">
+            {noPrefetch && "NO PREFETCH "}
+            {noStore && "NO STORE "}
+            {revalidate && "REVALIDATE 60sec "}
+            {content.title}
+          </div>
         </div>
         <div className="article-box__head">
           <div className="article-box__head-rel">

@@ -2,10 +2,16 @@ import ContentPage from "../../../components/ContentPage";
 
 async function getData(slug) {
   try {
+    const noStore = slug === "solidjs-reactivity-unchained";
+    const revalidate = slug === "optimizing-html5-games-10-years-of-learnings";
     const res = await fetch(
       process.env.NODE_ENV === "production"
         ? "https://nextjs-test-data.vercel.app/api/getData"
-        : "http://localhost:3000/api/getData"
+        : "http://localhost:3000/api/getData",
+      {
+        cache: noStore ? "no-store" : undefined,
+        next: { revalidate: revalidate ? 60 : undefined },
+      }
     );
 
     // The return value is *not* serialized

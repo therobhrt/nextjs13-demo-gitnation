@@ -4,6 +4,7 @@ import TagComponent from "./TagComponent";
 import Link from "next/link";
 import { getName, getProfileUrl } from "./VideoItem";
 import { getAvatar } from "./ArticleItem";
+import { ContentVideo } from "./ContentVideo";
 
 export function ContentText({ content }) {
   return content.text ? (
@@ -156,6 +157,8 @@ export default function ContentPage({ content }) {
                 )
               )}
             </div>
+
+            <ContentVideo content={content} />
 
             <div className="article-main__row">
               <div className="article-main__body">
