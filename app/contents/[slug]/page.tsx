@@ -1,5 +1,7 @@
 import ContentPage from "../../../components/ContentPage";
 
+export const runtime = "experimental-edge";
+
 async function getData(slug) {
   try {
     const noStore = slug === "solidjs-reactivity-unchained";
