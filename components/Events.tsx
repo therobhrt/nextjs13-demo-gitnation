@@ -47,7 +47,7 @@ export function formatEventDate({
   }
 }
 
-export function getEventLink(event: Event): string {
+export function getEventLink(event): string {
   return `/events/${event.slug || event.id}`;
 }
 

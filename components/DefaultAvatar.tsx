@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-key */
+
 const color = "#ff7600";
 
 const faces = [

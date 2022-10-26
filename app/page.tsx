@@ -124,7 +124,10 @@ export const homePageContentConfig = [
 
 async function getData() {
   try {
-    const res = await fetch("http://localhost:3000/api/getData");
+    const res = await fetch(
+      // "http://localhost:3000/api/getData"
+      "https://nextjs-test-data.vercel.app/api/getData"
+    );
 
     // The return value is *not* serialized
     // You can return Date, Map, Set, etc.
@@ -152,7 +155,7 @@ export default async function Page() {
       <LeftMenu />
       <div className="wrap__content">
         <div className="w-main" />
-        <div className="aside-title color">Talks from our events</div>
+        {/*<div className="aside-title color">Talks from our events</div>*/}
         {/*<LastEventsSwiper events={pastEvents} />*/}
         {sliders}
       </div>
